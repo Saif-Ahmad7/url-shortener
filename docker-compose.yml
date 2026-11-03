@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  url-shortener-sb:
+    build: .
+    image: url-shortener-sb:latest
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_DIALECT: ${DATABASE_DIALECT}
+      JWT_SECRET: ${JWT_SECRET}
+      FRONTEND_URL: ${FRONTEND_URL}
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge
